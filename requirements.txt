@@ -11,6 +11,8 @@ alembic
 
 # Data Validation
 pydantic
+pydantic-settings
+python-multipart
 
 # AHP Calculation
 numpy

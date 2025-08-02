@@ -134,7 +134,6 @@ def get_recommendation(
         raise HTTPException(status_code=404, detail="Match not found or does not belong to user")
 
     # 1. Ambil semua bobot global sub-kriteria
-    # Bobot global adalah bobot yang context_criterion_id nya BUKAN tujuan utama (MG)
     goal_id = db.query(models.Criterias.id).filter(models.Criterias.parent.is_(None)).scalar()
     weights_db = db.query(models.Weights).filter(
         models.Weights.match_id == match_id,
@@ -150,9 +149,13 @@ def get_recommendation(
     if not alternatives_db:
         raise HTTPException(status_code=400, detail="Alternatives for this match must be submitted first.")
     
-    # Hapus data lama
-    db.query(models.Judgements).join(models.Weights).filter(models.Weights.match_id == match_id).delete(synchronize_session=False)
-    db.query(models.Scores).filter(models.Scores.match_id == match_id).delete()
+    # --- AWAL PERBAIKAN ---
+    # Hapus data lama dengan cara yang aman
+    weight_ids_to_delete = [w.id for w in weights_db]
+    if weight_ids_to_delete:
+        db.query(models.Judgements).filter(models.Judgements.weight_id.in_(weight_ids_to_delete)).delete(synchronize_session=False)
+    db.query(models.Scores).filter(models.Scores.match_id == match_id).delete(synchronize_session=False)
+    # --- AKHIR PERBAIKAN ---
     
     # 3. Hitung judgement (score * weight)
     hero_scores = {} # {hero_id: total_score}

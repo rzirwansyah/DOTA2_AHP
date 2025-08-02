@@ -15,7 +15,7 @@ class Hero(BaseModel):
     heroRole: HeroRole
 
     class Config:
-        orm_mode = True
+        from_attributes = True # <-- PERUBAHAN DI SINI
         
 class HeroList(BaseModel):
     status: str

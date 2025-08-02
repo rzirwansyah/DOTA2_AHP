@@ -9,13 +9,13 @@ from sqlalchemy.sql import func
 from app.db.base import Base
 
 # Definisi Enum sesuai dengan yang ada di PostgreSQL
-class GameModeEnum(enum.Enum):
+class GameModeEnum(str, enum.Enum):
     all_pick = 'All Pick'
     turbo_mode = 'Turbo Mode'
     captain_mode = 'Captain Mode'
     single_draft = 'Single Draft'
 
-class ResultBattleEnum(enum.Enum):
+class ResultBattleEnum(str, enum.Enum):
     win = 'Win'
     lose = 'Lose'
     draw = 'Draw'
@@ -63,7 +63,7 @@ class Matches(Base):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     match_name = Column(String(255))
     match_date = Column(Date, nullable=False)
-    match_mode = Column(ENUM(GameModeEnum, name='game_mode'), nullable=False)
+    match_mode = Column(ENUM(GameModeEnum, name='game_mode', create_type=False), nullable=False)
     ally_team = Column(String(255))
     allies = Column(JSONB, nullable=False)
     enemy_team = Column(String(255))
@@ -159,7 +159,7 @@ class Histories(Base):
     id = Column(Integer, primary_key=True, index=True)
     match_id = Column(Integer, ForeignKey('matches.id'), nullable=False, unique=True)
     hero_id = Column(Integer, ForeignKey('heroes.id'), nullable=False)
-    match_result = Column(ENUM(ResultBattleEnum, name='result_battle'), nullable=False)
+    match_result = Column(ENUM(ResultBattleEnum, name='result_battle', create_type=False), nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
     
