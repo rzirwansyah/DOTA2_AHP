@@ -1,7 +1,3 @@
-Tentu, mohon maaf atas kendala tersebut. Berikut adalah isi lengkap dari file `README.md` yang bisa Anda salin langsung:
-
------
-
 # Dota 2 Hero Recommendation API (AHP)
 
 Ini adalah sebuah REST API yang dibangun menggunakan Python dan FastAPI untuk memberikan rekomendasi hero Dota 2 yang dipersonalisasi. Sistem ini menggunakan metode *Analytic Hierarchy Process* (AHP) untuk menghitung dan mengurutkan hero alternatif berdasarkan preferensi dan penilaian yang diberikan oleh pengguna.
