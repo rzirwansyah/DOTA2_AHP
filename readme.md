@@ -1,47 +1,50 @@
+Tentu, saya mengerti. Berikut adalah isi dari file `README.md` yang bisa Anda salin langsung dari chat, lengkap dengan format Markdown-nya.
+
+````markdown
 # Dota 2 Hero Recommendation API (AHP)
 
 Ini adalah sebuah REST API yang dibangun menggunakan Python dan FastAPI untuk memberikan rekomendasi hero Dota 2 yang dipersonalisasi. Sistem ini menggunakan metode *Analytic Hierarchy Process* (AHP) untuk menghitung dan mengurutkan hero alternatif berdasarkan preferensi dan penilaian yang diberikan oleh pengguna.
 
 ## Fitur Utama
 
-  - **Otentikasi Pengguna**: Sistem aman dengan otentikasi berbasis token JWT (Login).
-  - **Manajemen Pertandingan**: Pengguna dapat merekam detail pertandingan, termasuk tim kawan dan lawan.
-  - **Referensi Data**: Menyediakan endpoint untuk mendapatkan daftar semua hero dan struktur model kriteria AHP.
-  - **Input Preferensi Dinamis**: Pengguna dapat mengurutkan prioritas kriteria dan sub-kriteria untuk setiap pertandingan.
-  - **Penilaian Alternatif**: Pengguna memberikan skor untuk 5 hero alternatif terhadap semua sub-kriteria.
-  - **Perhitungan AHP**: Secara otomatis menghitung *pairwise comparison*, bobot lokal dan global, serta melakukan uji konsistensi.
-  - **Rekomendasi Terpersonalisasi**: Menghasilkan urutan hero yang direkomendasikan berdasarkan skor akhir AHP.
-  - **Riwayat Pertandingan**: Merekam hasil pertandingan dan hero yang digunakan untuk referensi di masa depan.
+-   **Otentikasi Pengguna**: Sistem aman dengan otentikasi berbasis token JWT (Login).
+-   **Manajemen Pertandingan**: Pengguna dapat merekam detail pertandingan, termasuk tim kawan dan lawan.
+-   **Referensi Data**: Menyediakan endpoint untuk mendapatkan daftar semua hero dan struktur model kriteria AHP.
+-   **Input Preferensi Dinamis**: Pengguna dapat mengurutkan prioritas kriteria dan sub-kriteria untuk setiap pertandingan.
+-   **Penilaian Alternatif**: Pengguna memberikan skor untuk 5 hero alternatif terhadap semua sub-kriteria.
+-   **Perhitungan AHP**: Secara otomatis menghitung *pairwise comparison*, bobot lokal dan global, serta melakukan uji konsistensi.
+-   **Rekomendasi Terpersonalisasi**: Menghasilkan urutan hero yang direkomendasikan berdasarkan skor akhir AHP.
+-   **Riwayat Pertandingan**: Merekam hasil pertandingan dan hero yang digunakan untuk referensi di masa depan.
 
 ## Teknologi yang Digunakan
 
-  - **Backend**: Python 3.9+
-  - **Framework**: FastAPI
-  - **Database**: PostgreSQL
-  - **ORM**: SQLAlchemy
-  - **Validasi Data**: Pydantic
-  - **Perhitungan Numerik**: NumPy
-  - **Server**: Uvicorn (ASGI)
-  - **Keamanan**: Passlib (hashing), Python-JOSE (JWT)
+-   **Backend**: Python 3.9+
+-   **Framework**: FastAPI
+-   **Database**: PostgreSQL
+-   **ORM**: SQLAlchemy
+-   **Validasi Data**: Pydantic
+-   **Perhitungan Numerik**: NumPy
+-   **Server**: Uvicorn (ASGI)
+-   **Keamanan**: Passlib (hashing), Python-JOSE (JWT)
 
------
+---
 
 ## Instalasi dan Setup
 
 Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal Anda.
 
-### 1\. Prasyarat
+### 1. Prasyarat
 
-  - Python 3.9 atau yang lebih baru
-  - PostgreSQL server yang sedang berjalan
-  - Git
+-   Python 3.9 atau yang lebih baru
+-   PostgreSQL server yang sedang berjalan
+-   Git
 
-### 2\. Clone Repositori
+### 2. Clone Repositori
 
 ```bash
 git clone <URL_REPOSITORI_ANDA>
 cd dota_ahp_api
-```
+````
 
 ### 3\. Buat dan Aktifkan Virtual Environment
 
@@ -97,13 +100,25 @@ uvicorn app.main:app --reload
 
 Aplikasi sekarang berjalan dan dapat diakses di `http://127.0.0.1:8000`.
 
+### 7\. Membuat User Awal (via Terminal)
+
+Untuk bisa login, Anda perlu membuat setidaknya satu user. Proyek ini menyertakan script untuk membuat user langsung dari terminal.
+
+Pastikan virtual environment Anda aktif, kemudian jalankan perintah berikut dari direktori root proyek:
+
+```bash
+python -m scripts.create_user
+```
+
+Script akan meminta Anda untuk memasukkan `Username`, `Nama Lengkap`, `Email`, dan `Password` secara interaktif.
+
 -----
 
 ## Penggunaan API
 
 ### Dokumentasi Interaktif
 
-Setelah server berjalan, buka browser Anda dan akses salah satu URL berikut untuk melihat dokumentasi API interaktif:
+Setelah server berjalan, buka browser Anda dan akses salah satu URL berikut untuk melihat dokumentasi API interaktif (Swagger UI atau ReDoc):
 
   - **Swagger UI**: `http://127.0.0.1:8000/docs`
   - **ReDoc**: `http://127.0.0.1:8000/redoc`
@@ -120,3 +135,8 @@ Melalui antarmuka ini, Anda dapat melihat semua endpoint yang tersedia, detail r
 6.  **Dapatkan Rekomendasi**: Gunakan `GET /api/v1/recommendations/{match_id}` untuk melihat hasil akhir.
 7.  **Kirim Hasil**: Setelah bermain, gunakan `POST /result` untuk menyimpan hasil pertandingan.
 8.  **Lihat Riwayat**: Gunakan `GET /history` untuk melihat semua riwayat pertandingan Anda.
+
+<!-- end list -->
+
+```
+```
